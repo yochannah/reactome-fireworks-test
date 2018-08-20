@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    Bluegenes Reactome Pathway Viewer
+  </title>
+
+  <script type="text/javascript" language="javascript" src="https://reactome.org/FireworksJs/fireworks/fireworks.nocache.js"></script>
+
+</head>
+
+<body>
+  <div class="bluegenesToolReactome" id='yourDiv'>
+    <div id="fireworksHolder"></div>
+  </div>
+  <script>
+    //Creating the Reactome pathways overview widget
+    function onReactomeFireworksReady() {
+      //This function is automatically called when the widget code is ready to be used
+      var fireworks = Reactome.Fireworks.create({
+        "proxyPrefix": "https://www.reactome.org",
+        "placeHolder": "fireworksHolder",
+        "width": 930,
+        "height": 500
+      });
+
+      ////Trying to focus pathways viewer on a gene name GATA1
+      //        fireworks.flagItems("GATA1");
+      //// This is a pathway for the D. melanogaster gene "bsk"
+      //// Trying to guess correct syntax - all result in console errors
+      //        fireworks.flagItems("04141");
+      //        fireworks.flagItems({identifier : "04141"});
+      //        fireworks.flagItems({identifier : 04141});
+      //        fireworks.flagItems({Identifier : 04141});
+      //        fireworks.flagItems({"Identifier" : "04141"});
+
+      //// Try a different method
+      //        fireworks.highlightNode({stId: "04141"});
+      //        fireworks.highlightNode({identifier: "04141"});
+      //// Try identifier gleaned from onNodeSelected...?
+      //        fireworks.highlightNode("R-HSA-390918");
+
+      ////
+
+      fireworks.onNodeSelected(function(selected) {
+        console.info("Selected ", selected);
+      });
+
+
+    }
+  </script>
+
+</body>
+
+</html>
